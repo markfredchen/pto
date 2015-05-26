@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Controller
 public class WeChatToken {
 
-    private static final String TOKEN = "MC_PTO";
+    private static final String TOKEN = "MCPTO";
 
     @RequestMapping(value = "/weChat", method = RequestMethod.GET)
     @ResponseBody
