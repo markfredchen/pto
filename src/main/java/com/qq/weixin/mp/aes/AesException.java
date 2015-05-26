@@ -1,4 +1,4 @@
-﻿package com.qq.weixin.mp.aes;
+package com.qq.weixin.mp.aes;
 
 @SuppressWarnings("serial")
 public class AesException extends Exception {
@@ -21,27 +21,27 @@ public class AesException extends Exception {
 	private static String getMessage(int code) {
 		switch (code) {
 		case ValidateSignatureError:
-			return "签名验证错误";
+			return "\u7B7E\u540D\u9A8C\u8BC1\u9519\u8BEF";
 		case ParseXmlError:
-			return "xml解析失败";
+			return "xml\u89E3\u6790\u5931\u8D25";
 		case ComputeSignatureError:
-			return "sha加密生成签名失败";
+			return "sha\u52A0\u5BC6\u751F\u6210\u7B7E\u540D\u5931\u8D25";
 		case IllegalAesKey:
-			return "SymmetricKey非法";
+			return "SymmetricKey\u975E\u6CD5";
 		case ValidateCorpidError:
-			return "corpid校验失败";
+			return "corpid\u6821\u9A8C\u5931\u8D25";
 		case EncryptAESError:
-			return "aes加密失败";
+			return "aes\u52A0\u5BC6\u5931\u8D25";
 		case DecryptAESError:
-			return "aes解密失败";
+			return "aes\u89E3\u5BC6\u5931\u8D25";
 		case IllegalBuffer:
-			return "解密后得到的buffer非法";
+			return "\u89E3\u5BC6\u540E\u5F97\u5230\u7684buffer\u975E\u6CD5";
 //		case EncodeBase64Error:
-//			return "base64加密错误";
+//			return "base64\u52A0\u5BC6\u9519\u8BEF";
 //		case DecodeBase64Error:
-//			return "base64解密错误";
+//			return "base64\u89E3\u5BC6\u9519\u8BEF";
 //		case GenReturnXmlError:
-//			return "xml生成失败";
+//			return "xml\u751F\u6210\u5931\u8D25";
 		default:
 			return null; // cannot be
 		}
