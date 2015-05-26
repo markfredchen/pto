@@ -1,5 +1,7 @@
 package com.mcworkshop.pto.web;
 
+import com.qq.weixin.mp.aes.AesException;
+import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,24 +17,18 @@ public class WeChatToken {
 
     private static final String TOKEN = "MCPTO";
 
+    private static final String AESKEY = "YsY3st3zVCoCQFC04am4C8nOShirIofGDHJSaDaSPjj";
+
+    private static final String CORPID = "wxe4aff45f5aba161b";
+
     @RequestMapping(value = "/weChat", method = RequestMethod.GET)
     @ResponseBody
     public String check(
             @RequestParam("msg_signature") String signature,
             @RequestParam("echostr") String echostr,
             @RequestParam("timestamp") String timestamp,
-            @RequestParam("nonce") String nonce) {
-        System.out.println("Enter weChat get access_token");
-        System.out.println("msg_signature: " + signature);
-        System.out.println("echostr: " + echostr);
-        System.out.println("timestamp: " + timestamp);
-        System.out.println("nonce: " + nonce);
-        String[] str = { TOKEN, timestamp, nonce };
-        Arrays.sort(str);
-        String bigStr = str[0] + str[1] + str[2];
-        String digest = DigestUtils.sha1Hex(bigStr).toLowerCase();
-
-        return digest.equals(signature) ? echostr: "";
+            @RequestParam("nonce") String nonce) throws AesException {
+        return new WXBizMsgCrypt(TOKEN, AESKEY, CORPID).VerifyURL(signature, timestamp, nonce, echostr);
     }
 
     @RequestMapping(value = "/weChat", method = RequestMethod.POST)
