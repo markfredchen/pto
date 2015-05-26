@@ -16,7 +16,7 @@ public class WeChatToken {
 
     @RequestMapping(value = "/weChat", method = RequestMethod.GET)
     @ResponseBody
-    public String check(@RequestParam("signature") String signature, @RequestParam("echostr") String echostr, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce) {
+    public String check(@RequestParam("msg_signature") String signature, @RequestParam("echostr") String echostr, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce) {
         System.out.println("Enter weChat get access_token");
         String[] str = { TOKEN, timestamp, nonce };
         Arrays.sort(str);
