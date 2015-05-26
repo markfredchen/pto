@@ -17,11 +17,16 @@ public class WeChatToken {
 
     @RequestMapping(value = "/weChat", method = RequestMethod.GET)
     @ResponseBody
-    public String check(@RequestParam("msg_signature") String signature, @RequestParam("echostr") String echostr, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce) {
+    public String check(
+            @RequestParam("msg_signature") String signature,
+            @RequestParam("echostr") String echostr,
+            @RequestParam("timestamp") String timestamp,
+            @RequestParam("nonce") String nonce) {
         System.out.println("Enter weChat get access_token");
         System.out.println("msg_signature: " + signature);
         System.out.println("echostr: " + echostr);
-        System.out.println("echostr decryted: " + Base64.getDecoder().decode(echostr.getBytes()));
+        System.out.println("timestamp: " + timestamp);
+        System.out.println("nonce: " + nonce);
         String[] str = { TOKEN, timestamp, nonce };
         Arrays.sort(str);
         String bigStr = str[0] + str[1] + str[2];
