@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 /**
  * Created by markfredchen on 5/23/15.
@@ -18,6 +19,9 @@ public class WeChatToken {
     @ResponseBody
     public String check(@RequestParam("msg_signature") String signature, @RequestParam("echostr") String echostr, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce) {
         System.out.println("Enter weChat get access_token");
+        System.out.println("msg_signature: " + signature);
+        System.out.println("echostr: " + echostr);
+        System.out.println("echostr decryted: " + Base64.getDecoder().decode(echostr.getBytes()));
         String[] str = { TOKEN, timestamp, nonce };
         Arrays.sort(str);
         String bigStr = str[0] + str[1] + str[2];
