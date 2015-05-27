@@ -34,8 +34,11 @@ public class WeChatToken {
 
     @RequestMapping(value = "/weChat", method = RequestMethod.POST)
     public @ResponseBody
-    String post(@RequestBody String requestBody, HttpServletRequest request) {
-        System.out.println(request.getParameterMap().keySet());
+    String post(@RequestBody String requestBody,
+                @RequestParam("msg_signature") String signature,
+                @RequestParam("timestamp") String timestamp,
+                @RequestParam("nonce") String nonce) throws AesException {
+        System.out.println(new WXBizMsgCrypt(TOKEN, AESKEY, CORPID).DecryptMsg(signature, timestamp, nonce, requestBody));
         System.out.println(requestBody);
         return "";
     }
