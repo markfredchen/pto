@@ -41,8 +41,8 @@ import org.apache.commons.codec.binary.Base64;
 public class WXBizMsgCrypt {
 	static Charset CHARSET = Charset.forName("utf-8");
 	Base64 base64 = new Base64();
-	byte[] aesKey = "U8lbhimPu6tgDnhTWTqbSjTgRM6H6Qbv9fJrlS8ZVC2".getBytes();
-	String token = "MCPTO";
+	byte[] aesKey;
+	String token;
 	String corpId;
 
 	/**

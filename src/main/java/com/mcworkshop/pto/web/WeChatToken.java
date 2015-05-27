@@ -6,6 +6,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -33,7 +34,8 @@ public class WeChatToken {
 
     @RequestMapping(value = "/weChat", method = RequestMethod.POST)
     public @ResponseBody
-    String post(@RequestBody String requestBody) {
+    String post(@RequestBody String requestBody, HttpServletRequest request) {
+        System.out.println(request.getParameterMap().keySet());
         System.out.println(requestBody);
         return "";
     }
